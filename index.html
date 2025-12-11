@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arbotics — Website & Form Proyek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Reset & Global ===== */
+    body {
+      scroll-behavior: smooth;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #111;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+    a, button { transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+    a:hover, button:hover { transform: translateY(-4px); }
+
+    /* ===== Header ===== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      backdrop-filter: blur(20px);
+      background: rgba(0,0,0,0.4);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 40px;          /* ukuran tinggi logo */
+      width: 40px;           /* lebar sama agar bulat */
+      border-radius: 50%;    /* membuat lingkaran */
+      object-fit: cover;     /* agar gambar tidak terdistorsi */
+      margin-right: 10px;
+    }
+    .nav a {
+      margin-left: 30px;
+      color: #f2f2f2;
+      text-decoration: none;
+      font-weight: 500;
+      opacity: 0.7;
+    }
+    .nav a:hover, .nav a.active { opacity: 1; border-bottom: 2px solid #fff; }
+
+    /* ===== Hero ===== */
+    .hero {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=1400&q=80') no-repeat center/cover;
+      background-attachment: fixed;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 40px;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,#000,#1a1a1a);
+      z-index: 0;
+    }
+    .hero > div { position: relative; z-index: 1; }
+    .hero h1 { font-size: 58px; font-weight: 700; letter-spacing: -1px; margin-bottom: 10px; }
+    .hero p { font-size: 20px; opacity: 0.8; }
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 32px;
+      background: #fff;
+      color: #000;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.7; }
+
+    /* ===== Sections ===== */
+    .section {
+      padding: 120px 20px;
+      max-width: 1200px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s ease;
+    }
+    .section.show { opacity: 1; transform: translateY(0); }
+    h2 { font-size: 38px; margin-bottom: 40px; font-weight: 600; }
+
+    /* ===== Grid & Panels ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .panel {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: 0.3s;
+    }
+    .panel:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    /* ===== Form ===== */
+    .form-box {
+      max-width: 600px;
+      margin: auto;
+      background: #1b1b1b;
+      padding: 30px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    input, textarea, select {
+      width: 100%; padding: 12px;
+      margin-top: 10px; margin-bottom: 25px;
+      border-radius: 10px; border: none;
+      background: #222; color: #fff;
+    }
+    button {
+      width: 100%; padding: 14px;
+      background: #fff; color: #000;
+      font-weight: 600;
+      border-radius: 12px;
+      border: none; cursor: pointer;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      padding: 40px; text-align: center;
+      opacity: .6;
+    }
+
+    /* ===== Responsive ===== */
+    @media(max-width:768px){
+      header { padding: 15px 20px; }
+      .hero h1 { font-size: 42px; }
+      .hero p { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="logo.png" alt="Arbotics Logo">
+    <strong>Arbotics</strong>
+  </div>
+  <nav class="nav">
+    <a href="#beranda">Beranda</a>
+    <a href="#tentang">Tentang Kami</a>
+    <a href="#layanan">Layanan</a>
+    <a href="#portofolio">Portofolio</a>
+    <a href="#proyek">Proyek</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+</header>
+
+<section id="beranda" class="hero">
+  <div>
+    <h1>Kembangkan Imajinasi Masa Depan</h1>
+    <p>Membawa teknologi cerdas ke level berikutnya.</p>
+    <a href="#proyek" class="btn">Mulai Proyek</a>
+  </div>
+</section>
+
+<section id="portofolio" class="section">
+  <h2>Portofolio</h2>
+  <div class="grid">
+    <div class="panel"><h3>Robot Autonomous</h3><p>Implementasi artificial intelligence ringan.</p></div>
+    <div class="panel"><h3>Dashboard IoT</h3><p>Pemantauan pH, TDS, dan suhu realtime.</p></div>
+    <div class="panel"><h3>Lengan Robotik</h3><p>Arm presisi 4 DOF untuk edukasi.</p></div>
+    <div class="panel"><h3>Proyek Elektronika</h3><p>Menerima pembuatan semua jenis alat elektronik & robotika.</p></div>
+  </div>
+</section>
+
+<section id="tentang" class="section">
+  <h2>Tentang Kami</h2>
+  <p>Arbotics berfokus pada pengembangan robotika modern dengan kualitas tinggi, efisiensi, dan performa terbaik.</p>
+</section>
+
+<section id="layanan" class="section">
+  <h2>Layanan</h2>
+  <div class="grid">
+    <div class="panel"><h3>Perakitan Robot</h3><p>Pembuatan robot custom sesuai kebutuhan.</p></div>
+    <div class="panel"><h3>IoT & Automasi</h3><p>Sistem otomatisasi dan dashboard realtime.</p></div>
+    <div class="panel"><h3>Elektronika</h3><p>Pembuatan project elektronika: modul sensor, aktuator, dan perangkat elektronik custom.</p></div>
+  </div>
+</section>
+
+<section id="proyek" class="section">
+  <h2>Pemesanan Proyek</h2>
+  <div class="form-box">
+    <form onsubmit="event.preventDefault(); alert('Form berhasil dikirim!');">
+      <label>Jenis Proyek yang Ingin Dibuat</label>
+      <select>
+        <option value="robot">Robot Autonomous</option>
+        <option value="iot">Sistem IoT Realtime</option>
+        <option value="elektronika">Perangkat Elektronika</option>
+        <option value="custom">Custom Lainnya</option>
+      </select>
+
+      <label>Deskripsi Proyek</label>
+      <textarea rows="5" placeholder="Jelaskan proyek yang ingin dibuat..."></textarea>
+
+      <label>Daftar Komponen yang Dibutuhkan</label>
+      <textarea rows="4" placeholder="Contoh: ESP32, sensor ultrasonik, motor servo..."></textarea>
+
+      <label>Lokasi Pemesan</label>
+      <input type="text" placeholder="Kota / Kabupaten / Provinsi" />
+
+      <label>Kontak Pemesan</label>
+      <input type="text" placeholder="Nomor WhatsApp / Email" />
+
+      <button>Kirim Pemesanan</button>
+    </form>
+  </div>
+</section>
+
+<section id="kontak" class="section">
+  <h2>Kontak</h2>
+  <p>Email: arbotics.contact@example.com</p>
+  <p>WhatsApp: 08xxxxxxxxxx</p>
+</section>
+
+<footer>
+  © 2025 Arbotics — Semua Hak Dilindungi.
+</footer>
+
+<script>
+  // ===== Fade-in saat scroll =====
+  document.addEventListener("DOMContentLoaded", function() {
+    const sections = document.querySelectorAll('.section, .hero');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){ entry.target.classList.add('show'); }
+      });
+    }, { threshold: 0.2 });
+    sections.forEach(sec => observer.observe(sec));
+  });
+
+  // ===== Navigasi aktif saat scroll =====
+  const navLinks = document.querySelectorAll('.nav a');
+  window.addEventListener('scroll', () => {
+    const scrollPos = window.scrollY + 120;
+    navLinks.forEach(link => {
+      const section = document.querySelector(link.getAttribute('href'));
+      if(section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos){
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
