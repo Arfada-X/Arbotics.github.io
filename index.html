@@ -1,302 +1,613 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arbotics | Kembangkan Imajinasi Masa Depan</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arbotics | Kembangkan Imajinasi Masa Depan</title>
 
-  <!-- EMAIL JS -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    (function(){ emailjs.init("CbLvRc_UKPBOt6ITi"); })();
-  </script>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init("CbLvRc_UKPBOt6ITi");
+      })();
+    </script>
 
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-    body{background:#fff;color:#111;line-height:1.6}
-    header{position:fixed;top:0;width:100%;background:#fff;padding:15px 30px;z-index:10;transition:.3s}
-    header nav{display:flex;justify-content:space-between;align-items:center}
-
-/* MOBILE MENU */
-.menu-toggle{display:none;font-size:24px;cursor:pointer}
-@media(max-width:768px){
-  header ul{position:absolute;top:70px;right:20px;background:#fff;flex-direction:column;gap:15px;padding:20px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.15);display:none}
-  header ul.show{display:flex}
-  .menu-toggle{display:block}
-}
-    header ul{display:flex;list-style:none;gap:20px}
-    header a{text-decoration:none;color:#111;font-weight:600}
-
-    .hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:#fff;padding:40px}
-
-/* HERO IMAGE RESPONSIVE */
-@media (max-width:768px){
-  #home{
-    background-size:contain !important;
-    background-position:center top !important;
-    background-repeat:no-repeat;
-    min-height:100vh;
-  }
-}
-    .hero h1{font-size:42px;margin-bottom:15px;color:#fff;text-shadow:0 4px 12px rgba(0,0,0,.45)}
-    .hero p{color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.45)}
-
-    section{padding:80px 10%}
-    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;text-align:center}
-    .stat h3{font-size:36px}
-
-    .form{max-width:500px;margin:auto;background:#fff;padding:30px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.1)}
-    .form label{display:block;margin-top:15px;font-weight:600}
-    .form input,.form textarea,.form select{
-      width:100%;
-      padding:10px;
-      margin-top:5px;
-      border-radius:8px;
-      border:1px solid #ccc;
-      outline:none;
-      background:#fff;
-      appearance:none;
-      -webkit-appearance:none;
-    }
-
-    /* hilangkan biru & ganti indikator hijau */
-    .form select:focus{
-      border-color:#22c55e;
-      box-shadow:0 0 0 2px rgba(34,197,94,.25);
-    }
-
-    /* isi dropdown */
-    .form select option{
-      background:#fff;
-      color:#111;
-    }
-
-    /* hover & selected jadi hijau lembut (tanpa biru) */
-    .form select option:hover,
-    .form select option:checked{
-      background:#eafff1;
-      color:#111;
-    }
-
-    /* titik hijau indikator */
-    .form select{
-      background-image:radial-gradient(#22c55e 2px, transparent 3px);
-      background-repeat:no-repeat;
-      background-position:95% 50%;
-    }
-    .form button{margin-top:20px;width:100%;padding:12px;border:none;border-radius:10px;background:#111;color:#fff;font-size:16px;cursor:pointer}
-    .form button:disabled{opacity:.6}
-
-    footer{text-align:center;padding:30px;background:#fff;color:#555}
-
-    .fade{opacity:0;transform:translateY(20px);transition:.6s}
-    .appear{opacity:1;transform:none}
-
-    #top{position:fixed;bottom:20px;right:20px;padding:10px 14px;border:none;border-radius:50%;background:#111;color:#fff;display:none;cursor:pointer}
-
-    @media(max-width:768px){header ul{display:none}}
-  </style>
-</head>
-<body>
-
-<header>
-  <nav>
-    <div style="display:flex;align-items:center;gap:10px"><img src="logo.png" alt="Arbotics" style="width:36px;height:36px;border-radius:50%"><strong>Arbotics</strong></div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <ul id="mobileMenu">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#team">Developer</a></li>
-      <li><a href="#project">Project</a></li>
-      <li><a href="#discussion">Diskusi</a></li>
-      <li><a href="#contact">Kontak</a></li>
-    </ul>
-  </nav>
-</header>
-
-<section id="home" class="hero fade" style="position:relative;overflow:hidden;background:url('hero.jpg') center/cover no-repeat">
-  <div style="position:relative;color:#fff">
-    <h1>Kembangkan Imajinasi Masa Depan</h1>
-    <p>Solusi robotika, IoT, dan elektronika modern</p>
-    <a href="#project" style="display:inline-block;margin-top:30px;padding:14px 36px;border-radius:999px;background:#ffffff;color:#111;font-weight:600;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.25)">Mulai Project</a>
-  </div>
-</section>
-
-<section id="about" class="fade">
-  <h2 style="text-align:center;margin-bottom:30px">Tentang Kami</h2>
-  <div style="max-width:900px;margin:auto;display:flex;flex-direction:column;gap:40px;text-align:center">
-    <p>
-      <strong>Arbotics</strong> adalah pengembang solusi robotika, Internet of Things (IoT), dan sistem elektronika
-      yang berfokus pada inovasi, edukasi, dan penerapan teknologi modern untuk kebutuhan nyata.
-    </p>
-
-    <div>
-      <h3>Vision</h3>
-      <p>Menjadi pengembang robotika dan teknologi cerdas yang inovatif, terjangkau, dan berdampak bagi masa depan.</p>
-    </div>
-
-    <div>
-      <h3>Mission</h3>
-      <ul style="padding-left:0;list-style-position:inside;line-height:1.8">
-        <li>Mengembangkan solusi robotika dan IoT yang aplikatif</li>
-        <li>Mendorong kreativitas dan inovasi generasi muda</li>
-        <li>Menyediakan layanan teknologi yang profesional dan berkelanjutan</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="stats" class="fade">
-  <h2 style="text-align:center;margin-bottom:30px">Statistik</h2>
-  <div class="stats">
-    <div class="stat"><h3 data-target="30">0</h3><p>Proyek</p></div>
-    <div class="stat"><h3 data-target="15">0</h3><p>Klien</p></div>
-    <div class="stat"><h3 data-target="5">0</h3><p>Tahun</p></div>
-  </div>
-</section>
-
-<section id="team">
-  <h2 style="text-align:center;margin-bottom:30px">Developer</h2>
-  <div class="stats fade" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px">
-
-    <div class="stat" style="text-align:left;background:#fff;padding:25px;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.08)">
-      <img src="dev1.jpg" alt="Arya Irfa" style="width:90px;height:90px;border-radius:50%;object-fit:cover;margin-bottom:15px">
-      <h3>Arya Irfa</h3>
-      <p style="font-weight:600;margin-bottom:10px">Founder & Robotics Engineer</p>
-      <ul style="padding-left:18px;color:#555">
-        <li>Robotika & sistem autonomous</li>
-        <li>IoT ESP32 & Raspberry Pi</li>
-        <li>Firmware & kontrol sensor</li>
-      </ul>
-    </div>
-
-    <div class="stat" style="text-align:left;background:#fff;padding:25px;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.08)">
-      <img src="dev2.jpg" alt="Reva Apria" style="width:90px;height:90px;border-radius:50%;object-fit:cover;margin-bottom:15px">
-      <h3>Reva Apria</h3>
-      <p style="font-weight:600;margin-bottom:10px">Admin & Support</p>
-      <ul style="padding-left:18px;color:#555">
-        <li>Manajemen proyek</li>
-        <li>Komunikasi klien</li>
-        <li>Dokumentasi</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<section id="project">
-  <h2 style="text-align:center;margin-bottom:10px">Pemesanan Project</h2>
-  <p style="text-align:center;margin-bottom:30px;color:#555">Silakan isi form di bawah untuk memesan atau mendiskusikan project Anda bersama tim Arbotics.</p>
-  <div class="form fade">
-    <label>Jenis Proyek</label>
-    <select id="jenis">
-      <option>Robotika</option>
-      <option>IoT</option>
-      <option>Elektronika</option>
-      <option>Custom</option>
-    </select>
-
-    <label>Deskripsi</label>
-    <textarea id="desk"></textarea>
-
-    <label>Email Anda</label>
-    <input id="email" placeholder="email@contoh.com" />
-
-    <button id="sendBtn" onclick="sendProject()">
-      <span id="btnText">Kirim Proyek</span>
-      <span id="loaderBtn" style="display:none">Mengirim...</span>
-    </button>
-    <p id="statusMsg"></p>
-  </div>
-</section>
-
-</section>
-
-<section id="discussion" class="fade">
-  <h2 style="text-align:center;margin-bottom:10px">Diskusi Project</h2>
-  <p style="text-align:center;margin-bottom:30px;color:#555">Gunakan menu ini jika Anda ingin berdiskusi terlebih dahulu sebelum melakukan pemesanan project.</p>
-  <div style="max-width:600px;margin:auto;text-align:center">
-    <p style="margin-bottom:20px">Silakan hubungi kami melalui Instagram. Setelah halaman terbuka, klik tombol <strong>Message</strong> untuk memulai DM.</p>
-    <a href="https://www.instagram.com/arbotics.id?igsh=cGp0bW15bDJyZHo2&utm_source=qr" target="_blank" style="display:inline-block;padding:14px 36px;border-radius:999px;background:#111;color:#fff;font-weight:600;text-decoration:none">Buka Instagram Arbotics</a>
-  </div>
-</section>
-
-<section id="contact">
-  <h2 style="text-align:center;margin-bottom:30px">Kontak</h2>
-  <div style="max-width:600px;margin:auto;text-align:center;line-height:2">
-    <p><strong>Email:</strong> xarfada@gmail.com</p>
-    <p><strong>Telepon:</strong> 083899071214</p>
-    <p><strong>Instagram:</strong> <a href="https://www.instagram.com/arbotics.id?igsh=cGp0bW15bDJyZHo2&utm_source=qr" target="_blank">@arbotics.id</a></p>
-  </div>
-</section>
-
-<footer>© 2025 Arbotics. All rights reserved.</footer>
-<button id="top">↑</button>
-
-<script>
-  // FADE
-  const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('appear');io.unobserve(x.target)}})});
-  document.querySelectorAll('.fade').forEach(el=>io.observe(el));
-
-  // STATS (khusus angka saja)
-  const stats=new IntersectionObserver(e=>{
-    e.forEach(x=>{
-      if(x.isIntersecting && x.target.dataset.target){
-        let el=x.target,t=+el.dataset.target,c=0,s=t/60;
-        const u=()=>{c+=s;c<t?(el.textContent=Math.floor(c)+'+',requestAnimationFrame(u)):el.textContent=t+'+'};
-        u();
-        stats.unobserve(el);
+    <style>
+      /* RESET & FONT */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
       }
-    })
-  });
-  document.querySelectorAll('[data-target]').forEach(el=>stats.observe(el));
+      body {
+        background: #fff;
+        color: #111;
+        line-height: 1.6;
+        scroll-behavior: smooth;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: 0.3s;
+      }
+      ul {
+        list-style: none;
+      }
 
-  // SCROLL TOP
-  const topBtn=document.getElementById('top');
-  window.onscroll=()=>topBtn.style.display=scrollY>300?'block':'none';
-  topBtn.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+      /* HEADER */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #fff;
+        padding: 15px 30px;
+        z-index: 10;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: 0.3s;
+      }
+      header nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header a.logo {
+        font-weight: 700;
+        font-size: 20px;
+        color: #111;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      header ul {
+        display: flex;
+        gap: 25px;
+      }
+      header a {
+        font-weight: 600;
+        color: #111;
+      }
+      header a:hover {
+        color: #22c55e;
+      }
+      .menu-toggle {
+        display: none;
+        font-size: 26px;
+        cursor: pointer;
+      }
 
-  // SEND PROJECT (EMAIL ONLY – FIXED)
-  function sendProject(){
-    const d = desk.value.trim();
-    const e = email.value.trim();
-    const msg = statusMsg;
-    const btn = sendBtn;
-    const txt = btnText;
-    const ld  = loaderBtn;
+      /* MOBILE MENU */
+      @media (max-width: 768px) {
+        header ul {
+          position: absolute;
+          top: 70px;
+          right: 20px;
+          background: #fff;
+          flex-direction: column;
+          gap: 15px;
+          padding: 20px;
+          border-radius: 12px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+          display: none;
+        }
+        header ul.show {
+          display: flex;
+        }
+        .menu-toggle {
+          display: block;
+        }
+      }
 
-    if(!d || !e){
-      msg.textContent = 'Lengkapi data';
-      msg.style.color = 'red';
-      return;
-    }
+      /* HERO */
+      .hero {
+        height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: #111 url("hero.jpg") center/cover no-repeat;
+        color: #fff;
+        position: relative;
+        padding: 0 20px;
+      }
+      .hero h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      }
+      .hero p {
+        font-size: 20px;
+        margin-bottom: 30px;
+        text-shadow: 0 2px 8px;
+        color: white;
+      }
+      .hero a {
+        display: inline-block;
+        padding: 14px 36px;
+        border-radius: 999px;
+        background: #fff;
+        color: #111;
+        font-weight: 600;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        transition: 0.3s;
+      }
+      .hero a:hover {
+        background: #22c55e;
+        color: #fff;
+      }
 
-    btn.disabled = true;
-    txt.style.display = 'none';
-    ld.style.display  = 'inline';
+      /* SECTION */
+      section {
+        padding: 100px 10%;
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 32px;
+        color: #111;
+      }
+      p {
+        text-align: center;
+        color: #555;
+        margin-bottom: 20px;
+      }
 
-    const data = {
-      jenis: jenis.value,
-      deskripsi: d,
-      email: e
-    };
+      /* STATS */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 30px;
+        text-align: center;
+        margin-top: 40px;
+      }
+      .stat h3 {
+        font-size: 36px;
+        color: #22c55e;
+        margin-bottom: 10px;
+      }
 
-    emailjs.send('service_pewiy3y','template_1j3ry01', data)
-      .then(() => {
-        msg.textContent = 'Proyek berhasil dikirim ke email';
-        msg.style.color = 'green';
-        desk.value = '';
-        email.value = '';
-      })
-      .catch(() => {
-        msg.textContent = 'Gagal mengirim email';
-        msg.style.color = 'red';
-      })
-      .finally(() => {
-        btn.disabled = false;
-        txt.style.display = 'inline';
-        ld.style.display  = 'none';
+      /* FORM */
+      .form {
+        max-width: 500px;
+        margin: auto;
+        background: #fff;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+      .form label {
+        display: block;
+        margin-top: 15px;
+        font-weight: 600;
+        color: #111;
+      }
+      .form input,
+      .form textarea,
+      .form select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        outline: none;
+        background: #fff;
+        transition: 0.3s;
+        font-size: 15px;
+      }
+      .form input:focus,
+      .form textarea:focus,
+      .form select:focus {
+        border-color: #22c55e;
+        box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+      }
+      .form button {
+        margin-top: 25px;
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        background: #111;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .form button:hover {
+        background: #22c55e;
+      }
+      .form button:disabled {
+        opacity: 0.6;
+      }
+
+      /* TEAM CARD */
+      .team-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+        justify-content: center;
+      }
+      .team-card {
+        background: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        transition: 0.3s;
+      }
+      .team-card:hover {
+        transform: translateY(-5px);
+      }
+      .team-card img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+        justify-items: center;
+      }
+      .team-card h3 {
+        margin-bottom: 5px;
+        color: #111;
+      }
+      .team-card p {
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #555;
+      }
+      .team-card ul {
+        padding-left: 18px;
+        color: #555;
+        line-height: 1.6;
+      }
+
+      /* DISCUSSION & CONTACT */
+      section a.button {
+        display: inline-block;
+        padding: 14px 36px;
+        border-radius: 999px;
+        background: #111;
+        color: #fff;
+        font-weight: 600;
+        transition: 0.3s;
+        margin-top: 15px;
+        text-align: center;
+      }
+
+      .center-btn {
+  text-align: center;
+}
+
+      
+      section a.button:hover {
+        background: #22c55e;
+        color: #fff;
+      }
+
+      /* FOOTER */
+      footer {
+        text-align: center;
+        padding: 30px;
+        background: #fff;
+        color: #555;
+        margin-top: 50px;
+      }
+
+      /* FADE ANIMATION */
+      .fade {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 0.6s;
+      }
+      .appear {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* SCROLL TOP BUTTON */
+      #top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 14px;
+        border: none;
+        border-radius: 50%;
+        background: #111;
+        color: #fff;
+        display: none;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      #top:hover {
+        background: #22c55e;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 32px;
+        }
+        .hero p {
+          font-size: 16px;
+        }
+        section {
+          padding: 80px 5%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <nav>
+        <a href="#home" class="logo"
+          ><img
+            src="logo.png"
+            alt="Arbotics"
+            style="width: 36px; height: 36px; border-radius: 50%"
+          />Arbotics</a
+        >
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <ul id="mobileMenu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">Tentang</a></li>
+          <li><a href="#stats">Statistik</a></li>
+          <li><a href="#team">Developer</a></li>
+          <li><a href="#project">Project</a></li>
+          <li><a href="#discussion">Diskusi</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero fade">
+      <div>
+        <h1>Kembangkan Imajinasi Masa Depan</h1>
+        <p>Solusi robotika, IoT, dan elektronika modern</p>
+        <a href="#project">Mulai Project</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="fade">
+      <h2>Tentang Kami</h2>
+      <p>
+        <strong>Arbotics</strong> adalah pengembang solusi robotika, IoT, dan
+        sistem elektronika yang berfokus pada inovasi, edukasi, dan penerapan
+        teknologi modern untuk kebutuhan nyata.
+      </p>
+      <div>
+        <h3>Vision</h3>
+        <p>
+          Menjadi pengembang robotika dan teknologi cerdas yang inovatif,
+          terjangkau, dan berdampak bagi masa depan.
+        </p>
+      </div>
+      <div>
+        <h3>Mission</h3>
+        <ul>
+          <li>Mengembangkan solusi robotika dan IoT yang aplikatif</li>
+          <li>Mendorong kreativitas dan inovasi generasi muda</li>
+          <li>
+            Menyediakan layanan teknologi yang profesional dan berkelanjutan
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section id="stats" class="fade">
+      <h2>Statistik</h2>
+      <div class="stats">
+        <div class="stat">
+          <h3 data-target="30">0</h3>
+          <p>Proyek</p>
+        </div>
+        <div class="stat">
+          <h3 data-target="15">0</h3>
+          <p>Klien</p>
+        </div>
+        <div class="stat">
+          <h3 data-target="5">0</h3>
+          <p>Tahun</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="fade">
+      <h2>Developer</h2>
+      <div class="team-container">
+        <div class="team-card">
+          <img src="dev1.jpg" alt="Arya Irfa" />
+          <h3>Arya Irfa</h3>
+          <p>Founder & Robotics Engineer</p>
+          <ul>
+            <li>Robotika & sistem autonomous</li>
+            <li>IoT ESP32 & Raspberry Pi</li>
+            <li>Firmware & kontrol sensor</li>
+          </ul>
+        </div>
+        <div class="team-card">
+          <img src="dev2.jpg" alt="Reva Apria" />
+          <h3>Muhammad Novian Pratama Wijaya</h3>
+          <p>Web Developer</p>
+          <ul>
+            <li>Manajemen proyek</li>
+            <li>Komunikasi klien</li>
+            <li>Dokumentasi</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT FORM -->
+    <section id="project" class="fade">
+      <h2>Pemesanan Project</h2>
+      <p>
+        Silakan isi form di bawah untuk memesan atau mendiskusikan project Anda
+        bersama tim Arbotics.
+      </p>
+      <div class="form">
+        <label>Jenis Proyek</label>
+        <select id="jenis">
+          <option>Robotika</option>
+          <option>IoT</option>
+          <option>Elektronika</option>
+          <option>Custom</option>
+        </select>
+
+        <label>Deskripsi</label>
+        <textarea id="desk"></textarea>
+
+        <label>Nomor Telepon</label>
+        <input id="phone" placeholder="0812xxxxxxx" />
+
+        <label>Email</label>
+        <input id="email" placeholder="email@contoh.com" />
+
+        <button id="sendBtn" onclick="sendProject()">
+          <span id="btnText">Kirim Proyek</span>
+          <span id="loaderBtn" style="display: none">Mengirim...</span>
+        </button>
+        <p id="statusMsg"></p>
+      </div>
+    </section>
+
+    <!-- DISCUSSION -->
+    <section id="discussion" class="fade">
+      <h2>Diskusi Project</h2>
+      <p>
+        Gunakan menu ini jika Anda ingin berdiskusi terlebih dahulu sebelum
+        melakukan pemesanan project.
+      </p>
+
+      <div class="center-btn">
+      <a
+        href="https://www.instagram.com/arbotics.id"
+        target="_blank"
+        class="button"
+        >Buka Instagram Arbotics</a
+      >
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="fade">
+      <h2>Kontak</h2>
+      <p><strong>Email:</strong> xarfada@gmail.com</p>
+      <p><strong>Telepon:</strong> 083899071214</p>
+      <p>
+        <strong>Instagram:</strong>
+        <a href="https://www.instagram.com/arbotics.id" target="_blank"
+          >@arbotics.id</a
+        >
+      </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>© 2025 Arbotics. All rights reserved.</footer>
+    <button id="top">↑</button>
+
+    <script>
+      // MOBILE MENU
+      function toggleMenu() {
+        const menu = document.getElementById("mobileMenu");
+        menu.classList.toggle("show");
+      }
+
+      // FADE ANIMATION
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("appear");
+            io.unobserve(entry.target);
+          }
+        });
       });
-  }
-</script>
-</body>
+      document.querySelectorAll(".fade").forEach((el) => io.observe(el));
+
+      // STATS COUNTER
+      const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.target.dataset.target) {
+            let el = entry.target,
+              t = +el.dataset.target,
+              c = 0,
+              s = t / 60;
+            const u = () => {
+              c += s;
+              c < t
+                ? ((el.textContent = Math.floor(c) + "+"),
+                  requestAnimationFrame(u))
+                : (el.textContent = t + "+");
+            };
+            u();
+            statsObserver.unobserve(el);
+          }
+        });
+      });
+      document
+        .querySelectorAll("[data-target]")
+        .forEach((el) => statsObserver.observe(el));
+
+      // SCROLL TOP BUTTON
+      const topBtn = document.getElementById("top");
+      window.onscroll = () =>
+        (topBtn.style.display = scrollY > 300 ? "block" : "none");
+      topBtn.onclick = () => scrollTo({ top: 0, behavior: "smooth" });
+
+      // SEND PROJECT (EmailJS)
+      function sendProject() {
+        const deskValue = document.getElementById("desk").value.trim();
+        const phoneValue = document.getElementById("phone").value.trim();
+        const emailValue = document.getElementById("email").value.trim();
+        const jenisValue = document.getElementById("jenis").value;
+
+        const msg = document.getElementById("statusMsg");
+        const btn = document.getElementById("sendBtn");
+        const btnText = document.getElementById("btnText");
+        const loader = document.getElementById("loaderBtn");
+
+        if (!deskValue || !phoneValue || !emailValue) {
+          msg.textContent = "Lengkapi semua data";
+          msg.style.color = "red";
+          return;
+        }
+
+        btn.disabled = true;
+        btnText.style.display = "none";
+        loader.style.display = "inline";
+
+        const data = {
+          jenis: jenisValue,
+          deskripsi: deskValue,
+          phone: phoneValue,
+          email: emailValue,
+        };
+
+        emailjs
+          .send("service_pewiy3y", "template_1j3ry01", data)
+          .then(() => {
+            msg.textContent = "Proyek berhasil dikirim";
+            msg.style.color = "green";
+            document.getElementById("desk").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("email").value = "";
+          })
+          .catch((error) => {
+            console.log(error);
+            msg.textContent = "Gagal mengirim";
+            msg.style.color = "red";
+          })
+          .finally(() => {
+            btn.disabled = false;
+            btnText.style.display = "inline";
+            loader.style.display = "none";
+          });
+      }
+    </script>
+  </body>
 </html>
